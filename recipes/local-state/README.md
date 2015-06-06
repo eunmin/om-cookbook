@@ -2,17 +2,17 @@
 
 ![alt text](preview.gif "Preview Image GIF")
 
-1) Create a new Om project using Chestnut
+1) Chestnut 템플릿으로 Om 프로젝트를 만든다.
 
 ```bash
 lein new chestnut local-state -- --om-tools --http-kit
 ```
 
-2) Use your editor of choice to open the file `local-state/src/cljs/core.cljs`
+2) 주로 사용하는 에디터로 `local-state/src/cljs/core.cljs` 파일을 연다.
 
-3) You should remove `(defonce app-state ...)` because it's not needed for this example.
+3) 여기서는 `(defonce app-state ...)`는 필요 없으니 지운다.
 
-4) Create an Om component with initial state
+4) init-state 함수가 있는 Om 컴포넌트를 만든다.
 
 ```clojure
 (defcomponent local-state-counter-view [_ owner]
@@ -20,7 +20,7 @@ lein new chestnut local-state -- --om-tools --http-kit
   (render-state [_ state]))
 ```
 
-5) Set your initial state values
+5) 초기화 할 state 값을 설정한다.
 
 ```clojure
 (defcomponent local-state-counter-view [_ owner]
@@ -30,7 +30,7 @@ lein new chestnut local-state -- --om-tools --http-kit
   (render-state [_ state]))
 ```
 
-6) Create a render state so the initial state can be displayed
+6) 초기화 한 state를 보여주도록 render-state 함수를 만든다.
 
 ```clojure
 (defcomponent local-state-counter-view [_ owner]
@@ -47,7 +47,7 @@ lein new chestnut local-state -- --om-tools --http-kit
 
 ```
 
-7) Add an onClick JavaScript event to the "Click Me" button. This event should update the local state using `om/update-state!`.
+7) "Click Me" 버튼에 자바스크립트 onClick 이벤트를 추가한다. 클릭 이벤트에서 `om/update-state!`로 로컬 state를 바꾼다.
 
 ```clojure
 (defcomponent local-state-counter-view [_ owner]
@@ -70,7 +70,7 @@ lein new chestnut local-state -- --om-tools --http-kit
 
 ```
 
-8) Alter or replace the `(defn main [] ...)` function so that the local state component is displayed on the webpage.
+8) 로컬 state 컴포넌트가 웹페이지 표시되도록 `(defn main [] ...)` 함수를 고치거나 아래 내용으로 바꾼다.
 
 ```clojure
 (defn main []
@@ -80,7 +80,7 @@ lein new chestnut local-state -- --om-tools --http-kit
    {:target (. js/document (getElementById "app"))}))
 ```
 
-9) Start a REPL with `lein repl`
+9) `lein repl`로 REPL을 시작한다. 
 
 ```
 nREPL server started on port 54879 on host 127.0.0.1 - nrepl://127.0.0.1:54879
@@ -95,7 +95,7 @@ Exit: Control+D or (exit) or (quit)
 Results: Stored in vars *1, *2, *3, an exception in *e
 ```
 
-10) Call `run` to start the back end and compile your ClojureScript.
+10) `run` 함수를 부르면 클로저스크립트가 컴파일되고 어플리케이션을 시작된다.
 
 ```
 local-state.server=> (run)
@@ -110,4 +110,4 @@ Successfully compiled "resources/public/js/app.js" in 18.01 seconds.
 notifying browser that file changed:  /js/out/local_state/core.js
 ```
 
-11) Point your browser to http://localhost:port. You can find the port in the REPL message output =>  `Starting web server on port ...`
+11) 브라우저에서 http://localhost:port에 접속한다. 다음과 같은 REPL 메시지에서 포트를 확인할 수 있다. =>  `Starting web server on port ...`
